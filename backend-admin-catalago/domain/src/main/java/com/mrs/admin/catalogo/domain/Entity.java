@@ -1,4 +1,7 @@
 package com.mrs.admin.catalogo.domain;
+import com.mrs.admin.catalogo.domain.validation.ValidationHandler;
+
+import javax.xml.validation.ValidatorHandler;
 import java.util.Objects;
 
 public abstract class Entity <ID extends Identifier>{
@@ -8,6 +11,8 @@ public abstract class Entity <ID extends Identifier>{
         Objects.requireNonNull(id, "'id' should not be null");
         this.id = id;
     }
+
+    public abstract void validate(ValidationHandler handler);
 
     public ID getId(){
         return id;
