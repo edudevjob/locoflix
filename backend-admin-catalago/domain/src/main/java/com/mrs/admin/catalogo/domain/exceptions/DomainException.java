@@ -1,8 +1,8 @@
 package com.mrs.admin.catalogo.domain.exceptions;
 
-import com.mrs.admin.catalogo.domain.validation.Error;
-
 import java.util.List;
+
+import com.mrs.admin.catalogo.domain.validation.Error;
 
 public class DomainException extends RuntimeException{
 
