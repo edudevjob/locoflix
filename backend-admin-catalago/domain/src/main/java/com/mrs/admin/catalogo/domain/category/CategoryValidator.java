@@ -1,15 +1,15 @@
 package com.mrs.admin.catalogo.domain.category;
 
-import com.mrs.admin.catalogo.domain.validation.Error;
 import com.mrs.admin.catalogo.domain.validation.ValidationHandler;
 import com.mrs.admin.catalogo.domain.validation.Validator;
+import com.mrs.admin.catalogo.domain.validation.Error;
 
 public class CategoryValidator extends Validator {
 
     private final Category category;
 
-    public CategoryValidator(final Category aCategory, final ValidationHandler handler) {
-        super(handler);
+    public CategoryValidator(final Category aCategory, final ValidationHandler aHandler) {
+        super(aHandler);
         this.category = aCategory;
     }
 

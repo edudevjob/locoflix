@@ -1,9 +1,10 @@
 package com.mrs.admin.catalogo.domain.category;
 
-import com.mrs.admin.catalogo.domain.exceptions.DomainException;
-import com.mrs.admin.catalogo.domain.validation.handler.ThrowsValidationHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import com.mrs.admin.catalogo.domain.exceptions.DomainException;
+import com.mrs.admin.catalogo.domain.validation.handler.ThrowsValidationHandler;
 
 public class CategoryTest {
     @Test
@@ -34,13 +35,28 @@ public class CategoryTest {
         final var expectedIsActive = true;
 
         final var actualCategory =
+                Category.newCategory(null, expectedDescription,expectedIsActive);
+
+        final var actualException =
+        Assertions.assertThrows(DomainException.class, () -> actualCategory.validate(new ThrowsValidationHandler()));
+        Assertions.assertEquals(expectedErrorCount,actualException.getErrors().size());
+        Assertions.assertEquals(expectedErrorMessage,actualException.getErrors().get(0).message());
+    }
+
+    @Test
+    public void givenAnInvalidEmptyName_whenCallNewCategoryAndValidate_thenShouldReceiveError(){
+        final String expectedName = null;
+        final var expectedErrorCount = 1;
+        final var expectedErrorMessage = "'name' should not be null";
+        final var expectedDescription = "A categoria mais assisteida";
+        final var expectedIsActive = true;
+
+        final var actualCategory =
                 Category.newCategory(expectedName, expectedDescription,expectedIsActive);
 
         final var actualException =
                 Assertions.assertThrows(DomainException.class, () -> actualCategory.validate(new ThrowsValidationHandler()));
         Assertions.assertEquals(expectedErrorCount,actualException.getErrors().size());
         Assertions.assertEquals(expectedErrorMessage,actualException.getErrors().get(0).message());
-
-
     }
 }

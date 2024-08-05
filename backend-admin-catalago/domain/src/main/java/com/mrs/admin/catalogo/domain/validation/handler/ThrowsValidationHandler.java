@@ -20,10 +20,10 @@ public class ThrowsValidationHandler implements ValidationHandler {
 
     @Override
     public ValidationHandler validate(final Validation aValidation) {
-        try{
-            aValidation.validate();
+        try {
+//            aValidation.validate();
         }catch (final Exception ex){
-            throw DomainException.with(List.of(new Error(ex.getMessage())));
+            throw DomainException.with(new Error(ex.getMessage()));
         }
         return this;
     }
